@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\todos; // using the todos model for database operations.
+use App\Models\todos; 
 
 class todosController extends Controller
 {
     public function index()
 {
-    // Fetch only the todos created by the authenticated user
+    
     $todos = todos::where('user_id', auth()->user()->id)->get();
     $data = compact('todos');
     return view("welcome")->with($data);
@@ -27,7 +27,7 @@ class todosController extends Controller
     $todo->name = $request['name'];
     $todo->work = $request['work'];
     $todo->duedate = $request['duedate'];
-    $todo->user_id = auth()->user()->id; // Store the user ID
+    $todo->user_id = auth()->user()->id; 
     $todo->save();
 
     return redirect(route("todo.home"));
